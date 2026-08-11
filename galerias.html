@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Galería - LOVE THERR</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;   
+        font-family: 'Patrick Hand', cursive, Arial, sans-serif;
+        background-color: #F5F5F5;
+        overflow-x: hidden;
+        font-size: 18px;
+    }
+
+    header {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        background: linear-gradient(90deg, #FFD1DC, #B19CD9, #BDFCC9);
+        color: #333;
+        padding: 15px 0;
+        position: relative;
+    }
+    
+    .marquee-text {
+        display: inline-block;
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: 'Dancing Script', cursive, 'Patrick Hand', Arial, sans-serif;
+        animation: scroll-left 6s linear infinite;
+        padding-left: 100%;
+    }
+    
+    @keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+    .icono-carrito {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 28px;
+        cursor: pointer;
+        color: #333;
+    }
+    .contador-carrito {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: #ff4444;
+        color: white;
+        font-size: 12px;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .panel-carrito {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 350px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+        z-index: 1000;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    .panel-carrito.activo {
+        right: 0;
+    }
+    .cerrar-carrito {
+        font-size: 24px;
+        cursor: pointer;
+        text-align: right;
+        margin-bottom: 15px;
+        color: #B19CD9;
+    }
+    .item-carrito {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .etiqueta-tipo {
+        font-size: 11px;
+        padding: 2px 6px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+    }
+    .etiqueta-compra {
+        background-color: #B19CD9;
+    }
+    .etiqueta-reserva {
+        background-color: #28a745;
+    }
+    .total-carrito {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: right;
+        color: #B19CD9;
+        font-family: 'Dancing Script', cursive;
+    }
+    .btn-comprar {
+        width: 100%;
+        background: #B19CD9;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: 'Patrick Hand', cursive;
+        font-size: 19px;
+    }
+    .btn-comprar:hover {
+        background-color: #FFD1DC;
+        color: #333;
+    }
+
+    .portada {
+        height: 400px;
+        background: 
+            linear-gradient(rgba(255, 209, 220, 0.5), rgba(177, 156, 217, 0.5)),
+            url("https://www.florespedia.com/Imagenes/flores-bonitas-girasoles.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+
+    .portada h2 {
+        font-size: 40px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        font-family: 'Dancing Script', cursive;
+        margin: 0 0 10px 0;
+    }
+
+    .portada p {
+        font-size: 20px;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+    
+    .menu-portada {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .menu-portada a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        padding: 10px 18px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: 0.3s;
+        font-family: 'Patrick Hand', cursive;
+        font-size: 19px;
+    }
+
+    .menu-portada a:hover {
+        background-color: #B19CD9;
+        color: white;
+    }
+
+    .redes-portada {
+        margin-top: 25px;
+    }
+
+    .redes-portada p {
+        font-size: 20px;
+        margin-bottom: 12px;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        font-family: 'Patrick Hand', cursive;
+    }
+
+    .iconos-redes {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        flex-wrap: wrap;
+    }
+
+    .iconos-redes a {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.85);
+        transition: 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .iconos-redes a:hover {
+        transform: scale(1.1);
+        background-color: #fff;
+    }
+
+    .iconos-redes img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+    }
+
+    .banner {
+        background: #B19CD9;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: 'Dancing Script', cursive;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        padding: 40px 20px;
+    }
+
+    .titulo-seccion {
+        text-align: center;
+        color: #333;
+        margin-bottom: 40px;
+        font-family: 'Dancing Script', cursive;
+        font-size: 32px;
+    }
+
+    .etiqueta-edicion {
+        background-color: #ff6b6b;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 2;
+        font-size: 13px;
+    }
+
+    .etiqueta-disponible {
+        background-color: #28a745;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 5px 0;
+        display: inline-block;
+    }
+
+    .categoria {
+        margin-bottom: 60px;
+    }
+
+    .categoria h3 {
+        color: #B19CD9;
+        font-size: 26px;
+        border-bottom: 2px solid #B19CD9;
+        padding-bottom: 8px;
+        margin-bottom: 25px;
+        font-family: 'Dancing Script', cursive;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .card-contenedor {
+        perspective: 1000px;
+        height: 380px;
+    }
+
+    .card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.6s ease;
+        cursor: pointer;
+    }
+
+    .card.girada {
+        transform: rotateY(180deg);
+    }
+
+    .card-frente, .card-atras {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        box-sizing: border-box;
+    }
+
+    .card-atras {
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .card h4 {
+        color: #333;
+        margin: 0 0 8px 0;
+        font-size: 20px;
+        font-family: 'Dancing Script', cursive;
+    }
+
+    .descripcion {
+        color: #666;
+        font-size: 17px;
+        line-height: 1.6;
+        padding: 10px;
+        font-family: 'Patrick Hand', cursive;
+    }
+
+    .info-historial {
+        color: #ff6b6b;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+        font-family: 'Patrick Hand', cursive;
+    }
+
+    .card button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+        font-family: 'Patrick Hand', cursive;
+        font-size: 18px;
+    }
+
+    .card button:hover {
+        background-color: #218838;
+        color: white;
+    }
+
+    footer {
+        background: #B19CD9;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-family: 'Dancing Script', cursive;
+        font-size: 20px;
+    }
+
+    .nota-galeria {
+        background-color: #fff;
+        border-left: 5px solid #28a745;
+        padding: 20px;
+        margin: 30px 0;
+        border-radius: 8px;
+        text-align: center;
+        color: #555;
+        font-family: 'Patrick Hand', cursive;
+        font-size: 17px;
+    }
+</style>
+</head>
+
+<body>
+    
+    <header>
+        <span class="marquee-text">
+            ✨ LOVE THERR ✨ &nbsp;&nbsp;&nbsp; 
+        </span>
+        <div class="icono-carrito" onclick="abrirCarrito()">
+            🛒
+            <span class="contador-carrito" id="contadorCarrito">0</span>
+        </div>
+    </header>
+
+    <div class="panel-carrito" id="panelCarrito">
+        <div class="cerrar-carrito" onclick="cerrarCarrito()">✕</div>
+        <h3 style="font-family: 'Dancing Script', cursive; font-size: 26px; color: #B19CD9; margin-top: 0;">🛒 Mis Artículos y Reservas</h3>
+        <p style="color: #666; font-size: 16px; margin-bottom: 20px; font-family: 'Patrick Hand', cursive;">✅ Todo queda guardado permanentemente</p>
+        <div id="listaCarrito"></div>
+        <div class="total-carrito">Total: Bs <span id="totalCarrito">0.00</span></div>
+        <button class="btn-comprar">Finalizar todo</button>
+    </div>
+
+    <div class="portada">
+        <h2>📸 Galería de Creaciones Anteriores</h2>
+        <p>Recuerdos de diseños únicos y ediciones especiales - ¡Reserva el tuyo!</p>
+        
+        <nav class="menu-portada">
+            <a href="LOVE THERR 2.0.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="combos.html">Combos</a>
+            <a href="galeria.html">Galería</a>
+            <a href="nosotros.html">Sobre nosotros</a>
+        </nav>
+
+        <div class="redes-portada">
+            <p>Síguenos y contáctanos:</p>
+            <div class="iconos-redes">
+                <a href="https://wa.me/TU_NUMERO" target="_blank" title="WhatsApp">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+                </a>
+                <a href="https://instagram.com/TU_USUARIO" target="_blank" title="Instagram">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+                </a>
+                <a href="https://facebook.com/TU_PAGINA" target="_blank" title="Facebook">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                </a>
+                <a href="https://tiktok.com/@TU_USUARIO" target="_blank" title="TikTok">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        ✨ RESERVA TUS DISEÑOS FAVORITOS - EDICIONES ÚNICAS E IRREPETIBLES ✨
+    </div>
+
+    <div class="container">
+        <h2 class="titulo-seccion">Nuestra Historia en Creaciones</h2>
+
+        <div class="nota-galeria">
+            <p>ℹ️ <strong>¿Cómo funciona?</strong> Estos productos fueron creados en ediciones pasadas. Puedes <strong>reservarlos</strong> aquí, y nosotros volveremos a elaborarlos especialmente para ti. <br>📌 <strong>Importante:</strong> Todo lo que agregues (compras o reservas) se guardará en tu carrito y <strong>nunca se eliminará</strong>.</p>
+        </div>
+
+        <div class="categoria">
+            <h3>❤️ Ediciones San Valentín (Años anteriores)</h3>
+            <div class="products">
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2023</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sLk8tWqP3bB8wJ5yFz7yQZ9kPpRjNqL8wQ&s" alt="Caja Corazón Gigante">
+                            <h4>Caja Corazón Gigante</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Caja Corazón Gigante', 120)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Fue nuestra estrella del año 2023. Caja en forma de corazón gigante, rellena de rosas preservadas, chocolates importados y una carta manuscrita especial. Materiales exclusivos que podemos volver a conseguir por encargo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2022</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ3TVsl2vB8LjBCdK5qCYhY0PUtHT8twjWgQ&s" alt="Ramo Rosas y Fresas">
+                            <h4>Ramo Rosas y Fresas</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Ramo Rosas y Fresas', 85)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Combinación única de rosas rojas naturales y fresas frescas cubiertas de chocolate. Solo se hizo esa temporada, pero por reserva especial podemos elaborarlo con 3 días de anticipación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2024</span>
+                            <img src="https://estaticos.tiendaregalos.eu/wp-content/uploads/2022/11/Cesta6-768x1024.jpeg" alt="Cesta Lujo Romántica">
+                            <h4>Cesta Lujo Romántica</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Cesta Lujo Romántica', 180)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Incluía vinos seleccionados, velas de aromas importadas, peluches grandes y flores eternas. Diseño complejo que elaboramos solo por reserva, manteniendo la calidad de lujo original.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2021</span>
+                            <img src="https://img1.elyerromenu.com/images/neoart-cuba/ramo-de-rosas-eternas-con-cinta/img.webp" alt="Arreglo de Cristal">
+                            <h4>Arreglo en Base de Cristal</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Arreglo en Base de Cristal', 95)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Flores naturales montadas sobre bases de cristal cortado a mano. Piezas delicadas que preparamos con mucho cuidado para reservas especiales, manteniendo su elegancia clásica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h3>🌸 Día de la Madre (Colecciones anteriores)</h3>
+            <div class="products">
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2023</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6pK6YqV8wXyFm4u7rL2Z9kPpRjNqL8w7gQ&s" alt="Cesta Spa Casero">
+                            <h4>Cesta Spa Natural</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Cesta Spa Natural', 70)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Productos hechos totalmente a mano: jabones, sales de baño y cremas naturales con flores secas. Por reserva preparamos ingredientes frescos y naturales tal como en el origen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2022</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ35nsN7AXH6kXkK86TFypaYzChSbQxiNWgXQ&s" alt="Álbum de Fotos Artesanal">
+                            <h4>Álbum de Fotos Completo</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Álbum de Fotos Completo', 60)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Encuadernación hecha a mano con telas y bordados personalizados. Un trabajo artesanal detallado que realizamos exclusivamente para reservas anticipadas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2024</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQYI3RJdLe9NdPumNGDfInjnulOyGC9G54Vg&s" alt="Arreglo Orquídeas Grandes">
+                            <h4>Arreglo Orquídeas Gigantes</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Arreglo Orquídeas Gigantes', 110)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Plantas de orquídea de tamaño grande, importadas especialmente. Por reserva volvemos a solicitar estas plantas únicas para que tengas el diseño original.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2021</span>
+                            <img src="https://www.florespedia.com/Imagenes/flores-bonitas-girasoles.jpg" alt="Ramo de Flores Silvestres">
+                            <h4>Ramo Flores Silvestres</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Ramo Flores Silvestres', 45)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Combinación especial de flores de temporada. Reserva con tiempo y recolectaremos las mejores flores frescas para armar este ramo único.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h3>🎄 Navidad (Diseños anteriores)</h3>
+            <div class="products">
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2023</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ3TVsl2vB8LjBCdK5qCYhY0PUtHT8twjWgQ&s" alt="Centro de Mesa Navideño">
+                            <h4>Centro de Mesa Tradicional</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Centro de Mesa Navideño', 75)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Usábamos ramas naturales de pino y abeto fresco. Por reserva preparamos este diseño clásico con materiales frescos y aromáticos tal como la tradición lo exige.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2022</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3sLk8tWqP3bB8wJ5yFz7yQZ9kPpRjNqL8wQ&s" alt="Cesta Dulces Navideña">
+                            <h4>Cesta Dulces Tradicionales</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Cesta Dulces Tradicionales', 55)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Incluía dulces típicos regionales. Al reservar, buscamos los dulces artesanales de la zona para que tu cesta tenga el sabor auténtico de las fiestas antiguas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2024</span>
+                            <img src="https://estaticos.tiendaregalos.eu/wp-content/uploads/2022/11/Cesta6-768x1024.jpeg" alt="Arreglo de Velas y Flores">
+                            <h4>Arreglo Velas y Flores</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Arreglo Velas y Flores', 90)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Velas artesanales con formas especiales. Cumpliendo normas de seguridad, volvemos a crear este diseño hermoso por encargo especial de reserva.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición 2021</span>
+                            <img src="https://img1.elyerromenu.com/images/neoart-cuba/ramo-de-rosas-eternas-con-cinta/img.webp" alt="Caja Regalo Dorada">
+                            <h4>Caja Regalo Acabado Dorado</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Edición especial</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Caja Regalo Acabado Dorado', 130)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Acabados de lujo que elaborábamos antes. Por reserva especial, realizamos este diseño exclusivo con materiales de alta calidad importados solo para ti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria">
+            <h3>🎁 Diseños Especiales (Pedidos únicos)</h3>
+            <div class="products">
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Pedido Único</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6pK6YqV8wXyFm4u7rL2Z9kPpRjNqL8w7gQ&s" alt="Mural de Flores">
+                            <h4>Mural de Flores Natural</h4>
+                            <span class="etiqueta-disponible">Reserva anticipada</span>
+                            <p class="info-historial">Trabajo exclusivo</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Mural de Flores Natural', 250)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Encargo especial anterior. Por reserva, organizamos nuestro equipo para crear este diseño gigante y espectacular nuevamente para tu evento o regalo especial.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición Limitada</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ35nsN7AXH6kXkK86TFypaYzChSbQxiNWgXQ&s" alt="Relicario con Flores">
+                            <h4>Relicario con Flores Preservadas</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Pieza exclusiva</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Relicario con Flores Preservadas', 150)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Joyería floral antigua. Hemos recuperado la técnica y, por reserva, creamos estas piezas únicas donde las flores quedan preservadas para siempre en cristal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Pedido Único</span>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQYI3RJdLe9NdPumNGDfInjnulOyGC9G54Vg&s" alt="Libro de Firmas Floral">
+                            <h4>Libro de Firmas Decorado</h4>
+                            <span class="etiqueta-disponible">Reserva especial</span>
+                            <p class="info-historial">Trabajo artesanal</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Libro de Firmas Decorado', 80)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Trabajo detallado de encargo anterior. Por reserva, volvemos a decorar cada página y cubierta con flores naturales y secas tal como se hacía en ese entonces.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-contenedor">
+                    <div class="card" onclick="this.classList.toggle('girada')">
+                        <div class="card-frente">
+                            <span class="etiqueta-edicion">Edición Especial</span>
+                            <img src="https://www.florespedia.com/Imagenes/flores-bonitas-girasoles.jpg" alt="Arco de Flores Pequeño">
+                            <h4>Arco de Flores para Mesa</h4>
+                            <span class="etiqueta-disponible">Disponible para reserva</span>
+                            <p class="info-historial">Diseño elegante</p>
+                            <button onclick="event.stopPropagation(); agregarReserva('Arco de Flores para Mesa', 95)">🛒 Reservar</button>
+                        </div>
+                        <div class="card-atras">
+                            <h4>Historia del diseño</h4>
+                            <p class="descripcion">Estructura curva clásica. Por reserva, construimos la estructura especial y la cubrimos totalmente de flores frescas recuperando esa forma elegante única.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        2026 love therr | Hecho con ❤️
+    </footer>
+
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio, tipo: 'compra' });
+            actualizarCarrito();
+            guardarCarrito();
+        }
+
+        function agregarReserva(nombre, precio) {
+            carrito.push({ nombre, precio, tipo: 'reserva' });
+            actualizarCarrito();
+            guardarCarrito();
+            alert('✅ Reserva agregada exitosamente. Se mantendrá guardada.');
+        }
+
+        function actualizarCarrito() {
+            const lista = document.getElementById('listaCarrito');
+            const contador = document.getElementById('contadorCarrito');
+            const total = document.getElementById('totalCarrito');
+            lista.innerHTML = '';
+            let suma = 0;
+
+            carrito.forEach((item, index) => {
+                suma += item.precio;
+                let etiquetaColor = item.tipo === 'compra' ? 'etiqueta-compra' : 'etiqueta-reserva';
+                let etiquetaTexto = item.tipo === 'compra' ? 'Compra' : 'Reserva';
+
+                lista.innerHTML += `
+                    <div class="item-carrito">
+                        <div>
+                            <span class="etiqueta-tipo ${etiquetaColor}">${etiquetaTexto}</span><br>
+                            <span>${item.nombre}</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span>Bs ${item.precio.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            contador.textContent = carrito.length;
+            total.textContent = suma.toFixed(2);
+        }
+
+        function guardarCarrito() {
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        function abrirCarrito() {
+            document.getElementById('panelCarrito').classList.add('activo');
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('panelCarrito').classList.remove('activo');
+        }
+
+        document.addEventListener('DOMContentLoaded', actualizarCarrito);
+    </script>
+</body>
+</html>
