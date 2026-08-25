@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobre Nosotros - LOVE THERR</title>
 
-<!-- FUENTES MANUSCRITAS AGREGADAS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +12,6 @@
 <style>
     body {
         margin: 0;   
-        /* Aplicamos la letra manuscrita base */
         font-family: 'Patrick Hand', cursive, Arial, sans-serif;   
         background-color: #F5F5F5;
         overflow-x: hidden;
@@ -34,7 +32,6 @@
         display: inline-block;
         font-size: 3rem;
         font-weight: bold;
-        /* Fuente manuscrita elegante para el título */
         font-family: 'Dancing Script', cursive, 'Patrick Hand', Arial, sans-serif;
         animation: scroll-left 6s linear infinite;
         padding-left: 100%;
@@ -254,24 +251,94 @@
         font-size: 32px;
     }
 
-    .valores {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 30px;
+    .carrusel-contenedor {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: 20px 0;
     }
 
-    .valor {
+    .carrusel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+    }
+
+    .carrusel-item {
+        min-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .carrusel-card {
+        background: linear-gradient(135deg, #FFD1DC40, #B19CD940);
+        padding: 30px;
+        border-radius: 12px;
         text-align: center;
-        padding: 15px;
-        background: #f9f9f9;
-        border-radius: 10px;
+        border-left: 4px solid #B19CD9;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .valor h3 {
+    .carrusel-card h3 {
         color: #B19CD9;
         font-family: 'Dancing Script', cursive;
-        font-size: 24px;
+        font-size: 28px;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .carrusel-card p {
+        font-size: 19px;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    .carrusel-controles {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .carrusel-btn {
+        background: #ffffff;
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        font-family: 'Patrick Hand', cursive;
+    }
+
+    .carrusel-btn:hover {
+        background: #B19CD9;
+        color: #ffffff;
+    }
+
+    .carrusel-indicadores {
+        display: flex;
+        gap: 10px;
+    }
+
+    .indicador {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .indicador.activo {
+        background: #B19CD9;
+        transform: scale(1.2);
     }
 
     .video-contenedor {
@@ -372,7 +439,7 @@
         <p>Conoce nuestra historia y pasión por los detalles</p>
         
         <nav class="menu-portada">
-            <a href="LOVE THERR 2.0.html">Inicio</a>
+            <a href="index.html">Inicio</a>
             <a href="productos.html">Productos</a>
             <a href="combos.html">Combos</a>
             <a href="galerias.html">Galerias</a>
@@ -413,33 +480,42 @@
                 </video>
             </div>
 
-            <p>Somos una empresa dedicada a crear momentos especiales a través de detalles únicos y personalizados. Nacimos en 2026 con la idea de ofrecer algo más que un regalo: una experiencia llena de amor, cariño y dedicación.</p>
-            
+            <p>En <strong>LOVE THERR</strong> creemos que cada regalo es una forma de expresar sentimientos, alegría y amor. Comenzamos como un pequeño proyecto con el sueño de ofrecer detalles únicos y especiales para cada ocasión.</p>
             <p>Cada uno de nuestros productos es elaborado a mano, cuidando cada detalle y seleccionando los mejores materiales y flores frescas. Creemos que un pequeño detalle puede cambiar el día de alguien, y nos esforzamos por ser parte de esos momentos felices.</p>
+            <p>Gracias por elegirnos y permitirnos ser parte de tus momentos más especiales.</p>
 
-            <h2>Nuestros Valores</h2>
-            <div class="valores">
-                <div class="valor">
-                    <h3>❤️ Amor</h3>
-                    <p>Todo lo que hacemos está lleno de sentimiento y dedicación.</p>
-                </div>
-                <div class="valor">
-                    <h3>🎨 Creatividad</h3>
-                    <p>Diseños únicos y originales que no encontrarás en otro lugar.</p>
-                </div>
-                <div class="valor">
-                    <h3>✨ Calidad</h3>
-                    <p>Solo usamos materiales de primera para que tu detalle sea perfecto.</p>
+            <div class="carrusel-contenedor">
+                <div class="carrusel" id="carrusel">
+                    <div class="carrusel-item">
+                        <div class="carrusel-card">
+                            <h3>🎯 Nuestra Misión</h3>
+                            <p><strong>Brindar productos de alta calidad, diseñados con creatividad y amor, para ayudar a nuestros clientes a expresar sus sentimientos de la mejor manera posible.</strong></p>
+                        </div>
+                    </div>
+                    <div class="carrusel-item">
+                        <div class="carrusel-card">
+                            <h3>👁️ Nuestra Visión</h3>
+                            <p><strong>Ser la tienda líder en detalles y regalos en la región, reconocida por nuestra calidad, creatividad y el cariño que ponemos en cada creación.</strong></p>
+                        </div>
+                    </div>
+                    <div class="carrusel-item">
+                        <div class="carrusel-card">
+                            <h3>💖 Nuestros Valores</h3>
+                            <p><strong>❤️ Amor — 🎨 Creatividad — ✨ Calidad</strong><br><br>Todo lo que hacemos está lleno de sentimiento y dedicación, con diseños únicos y materiales de primera para que tu detalle sea perfecto.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <p>En <strong>LOVE THERR</strong> creemos que cada regalo es una forma de expresar sentimientos, alegría y amor. Comenzamos como un pequeño proyecto con el sueño de ofrecer detalles únicos y especiales para cada ocasión.</p>
-            <p>Nos dedicamos a crear y seleccionar arreglos florales, regalos personalizados y sorpresas pensadas especialmente para esa persona que es tan importante para ti. Nos esforzamos por dar lo mejor en cada detalle, porque sabemos que un regalo no es solo un objeto, es una forma de decir "te importo".</p>
-            <p>Gracias por elegirnos y permitirnos ser parte de tus momentos más especiales.</p>
-
-            <h2>Nuestra Misión y Visión</h2>
-            <p><strong>Misión:</strong> Brindar productos de alta calidad, diseñados con creatividad y amor, para ayudar a nuestros clientes a expresar sus sentimientos de la mejor manera posible.</p>
-            <p><strong>Visión:</strong> Ser la tienda líder en detalles y regalos en la región, reconocida por nuestra calidad, creatividad y el cariño que ponemos en cada creación.</p>
+            <div class="carrusel-controles">
+                <button class="carrusel-btn" onclick="anterior()">◀</button>
+                <div class="carrusel-indicadores">
+                    <span class="indicador activo" onclick="irA(0)"></span>
+                    <span class="indicador" onclick="irA(1)"></span>
+                    <span class="indicador" onclick="irA(2)"></span>
+                </div>
+                <button class="carrusel-btn" onclick="siguiente()">▶</button>
+            </div>
             
         </div>
     </div>
@@ -536,6 +612,34 @@
         function cerrarCarrito() {
             document.getElementById('panelCarrito').classList.remove('activo');
         }
+
+        let posicion = 0;
+        const totalItems = 3;
+
+        function actualizarCarrusel() {
+            const carrusel = document.getElementById('carrusel');
+            carrusel.style.transform = `translateX(-${posicion * 100}%)`;
+            document.querySelectorAll('.indicador').forEach((ind, i) => {
+                ind.classList.toggle('activo', i === posicion);
+            });
+        }
+
+        function siguiente() {
+            posicion = (posicion + 1) % totalItems;
+            actualizarCarrusel();
+        }
+
+        function anterior() {
+            posicion = (posicion - 1 + totalItems) % totalItems;
+            actualizarCarrusel();
+        }
+
+        function irA(index) {
+            posicion = index;
+            actualizarCarrusel();
+        }
+
+        setInterval(siguiente,3000);
 
         document.addEventListener('DOMContentLoaded', actualizarCarrito);
     </script>
