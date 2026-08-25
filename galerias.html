@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Galería - LOVE THERR</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
     body {
         margin: 0;   
@@ -16,7 +14,6 @@
         overflow-x: hidden;
         font-size: 18px;
     }
-
     header {
         width: 100%;
         white-space: nowrap;
@@ -40,7 +37,6 @@
         0% { transform: translateX(0); }
         100% { transform: translateX(-100%); }
     }
-
     .icono-carrito {
         position: absolute;
         right: 30px;
@@ -54,7 +50,7 @@
         position: absolute;
         top: -8px;
         right: -10px;
-        background: #ff4444;
+        background: #FF9EBB;
         color: white;
         font-size: 12px;
         border-radius: 50%;
@@ -98,14 +94,14 @@
         font-size: 11px;
         padding: 2px 6px;
         border-radius: 10px;
-        color: white;
+        color: #333;
         font-weight: bold;
     }
     .etiqueta-compra {
-        background-color: #B19CD9;
+        background-color: #FFB6C1;
     }
     .etiqueta-reserva {
-        background-color: #28a745;
+        background-color: #B3E5FC;
     }
     .total-carrito {
         margin-top: 20px;
@@ -133,7 +129,6 @@
         background-color: #FFD1DC;
         color: #333;
     }
-
     .portada {
         height: 400px;
         background: 
@@ -148,14 +143,12 @@
         color: white;
         text-align: center;
     }
-
     .portada h2 {
         font-size: 40px;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         font-family: 'Dancing Script', cursive;
         margin: 0 0 10px 0;
     }
-
     .portada p {
         font-size: 20px;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
@@ -168,7 +161,6 @@
         margin-top: 20px;
         flex-wrap: wrap;
     }
-
     .menu-portada a {
         text-decoration: none;
         color: #333;
@@ -180,30 +172,25 @@
         font-family: 'Patrick Hand', cursive;
         font-size: 19px;
     }
-
     .menu-portada a:hover {
         background-color: #B19CD9;
         color: white;
     }
-
     .redes-portada {
         margin-top: 25px;
     }
-
     .redes-portada p {
         font-size: 20px;
         margin-bottom: 12px;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
         font-family: 'Patrick Hand', cursive;
     }
-
     .iconos-redes {
         display: flex;
         justify-content: center;
         gap: 22px;
         flex-wrap: wrap;
     }
-
     .iconos-redes a {
         width: 45px;
         height: 45px;
@@ -215,18 +202,15 @@
         transition: 0.3s ease;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
     .iconos-redes a:hover {
         transform: scale(1.1);
         background-color: #fff;
     }
-
     .iconos-redes img {
         width: 24px;
         height: 24px;
         object-fit: contain;
     }
-
     .banner {
         background: #B19CD9;
         color: white;
@@ -236,13 +220,11 @@
         font-weight: bold;
         font-family: 'Dancing Script', cursive;
     }
-
     .container {
         width: 80%;
         margin: auto;
         padding: 40px 20px;
     }
-
     .titulo-seccion {
         text-align: center;
         color: #333;
@@ -250,10 +232,9 @@
         font-family: 'Dancing Script', cursive;
         font-size: 32px;
     }
-
     .etiqueta-edicion {
-        background-color: #ff6b6b;
-        color: white;
+        background-color: #FFB6C1;
+        color: #333;
         padding: 5px 15px;
         border-radius: 20px;
         font-weight: bold;
@@ -263,10 +244,9 @@
         z-index: 2;
         font-size: 13px;
     }
-
     .etiqueta-disponible {
-        background-color: #28a745;
-        color: white;
+        background-color: #B3E5FC;
+        color: #333;
         padding: 4px 10px;
         border-radius: 15px;
         font-size: 12px;
@@ -274,11 +254,9 @@
         margin: 5px 0;
         display: inline-block;
     }
-
     .categoria {
         margin-bottom: 60px;
     }
-
     .categoria h3 {
         color: #B19CD9;
         font-size: 26px;
@@ -287,18 +265,15 @@
         margin-bottom: 25px;
         font-family: 'Dancing Script', cursive;
     }
-
     .products {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 25px;
     }
-
     .card-contenedor {
         perspective: 1000px;
         height: 380px;
     }
-
     .card {
         position: relative;
         width: 100%;
@@ -307,11 +282,9 @@
         transition: transform 0.6s ease;
         cursor: pointer;
     }
-
     .card.girada {
         transform: rotateY(180deg);
     }
-
     .card-frente, .card-atras {
         position: absolute;
         width: 100%;
@@ -324,7 +297,6 @@
         box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         box-sizing: border-box;
     }
-
     .card-atras {
         transform: rotateY(180deg);
         display: flex;
@@ -333,11 +305,9 @@
         align-items: center;
         background-color: #fff;
     }
-
     .card:hover {
         transform: translateY(-5px);
     }
-
     .card img {
         width: 100%;
         height: 150px;
@@ -346,14 +316,12 @@
         margin-bottom: 12px;
         cursor: pointer;
     }
-
     .card h4 {
         color: #333;
         margin: 0 0 8px 0;
         font-size: 20px;
         font-family: 'Dancing Script', cursive;
     }
-
     .descripcion {
         color: #666;
         font-size: 17px;
@@ -361,18 +329,16 @@
         padding: 10px;
         font-family: 'Patrick Hand', cursive;
     }
-
     .info-historial {
-        color: #ff6b6b;
+        color: #FF9EBB;
         font-weight: bold;
         font-size: 16px;
         margin-top: 10px;
         font-family: 'Patrick Hand', cursive;
     }
-
     .card button {
-        background-color: #28a745;
-        color: white;
+        background-color: #B3E5FC;
+        color: #333;
         border: none;
         padding: 10px 20px;
         border-radius: 8px;
@@ -382,12 +348,10 @@
         font-family: 'Patrick Hand', cursive;
         font-size: 18px;
     }
-
     .card button:hover {
-        background-color: #BDFCC9;
+        background-color: #B19CD9;
         color: white;
     }
-
     footer {
         background: #B19CD9;
         color: white;
@@ -396,10 +360,9 @@
         font-family: 'Dancing Script', cursive;
         font-size: 20px;
     }
-
     .nota-galeria {
         background-color: #fff;
-        border-left: 5px solid #28a745;
+        border-left: 5px solid #B3E5FC;
         padding: 20px;
         margin: 30px 0;
         border-radius: 8px;
@@ -410,7 +373,6 @@
     }
 </style>
 </head>
-
 <body>
     
     <header>
@@ -422,7 +384,6 @@
             <span class="contador-carrito" id="contadorCarrito">0</span>
         </div>
     </header>
-
     <div class="panel-carrito" id="panelCarrito">
         <div class="cerrar-carrito" onclick="cerrarCarrito()">✕</div>
         <h3 style="font-family: 'Dancing Script', cursive; font-size: 26px; color: #B19CD9; margin-top: 0;">🛒 Mis Artículos y Reservas</h3>
@@ -431,7 +392,6 @@
         <div class="total-carrito">Total: Bs <span id="totalCarrito">0.00</span></div>
         <button class="btn-comprar">Finalizar todo</button>
     </div>
-
     <div class="portada">
         <h2>📸 Galería de Creaciones Anteriores</h2>
         <p>Recuerdos de diseños únicos y ediciones especiales - ¡Reserva el tuyo!</p>
@@ -440,10 +400,9 @@
             <a href="index.html">Inicio</a>
             <a href="productos.html">Productos</a>
             <a href="combos.html">Combos</a>
-            <a href="galeria.html">Galería</a>
+            <a href="galerias.html">Galería</a>
             <a href="nosotros.html">Sobre nosotros</a>
         </nav>
-
         <div class="redes-portada">
             <p>Síguenos y contáctanos:</p>
             <div class="iconos-redes">
@@ -462,18 +421,14 @@
             </div>
         </div>
     </div>
-
     <div class="banner">
         ✨ RESERVA TUS DISEÑOS FAVORITOS - EDICIONES ÚNICAS E IRREPETIBLES ✨
     </div>
-
     <div class="container">
         <h2 class="titulo-seccion">Nuestra Historia en Creaciones</h2>
-
         <div class="nota-galeria">
             <p>ℹ️ <strong>¿Cómo funciona?</strong> Estos productos fueron creados en ediciones pasadas. Puedes <strong>reservarlos</strong> aquí, y nosotros volveremos a elaborarlos especialmente para ti. <br>📌 <strong>Importante:</strong> Todo lo que agregues (compras o reservas) se guardará en tu carrito y <strong>nunca se eliminará</strong>.</p>
         </div>
-
         <div class="categoria">
             <h3>❤️ Ediciones San Valentín (Años anteriores)</h3>
             <div class="products">
@@ -493,7 +448,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -510,7 +464,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -527,7 +480,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -546,7 +498,6 @@
                 </div>
             </div>
         </div>
-
         <div class="categoria">
             <h3>🌸 Día de la Madre (Colecciones anteriores)</h3>
             <div class="products">
@@ -566,7 +517,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -583,7 +533,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -600,7 +549,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -619,11 +567,9 @@
                 </div>
             </div>
         </div>
-
         <div class="categoria">
             <h3>🎄 Navidad (Diseños anteriores)</h3>
             <div class="products">
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -640,7 +586,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -657,7 +602,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -674,7 +618,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -693,11 +636,9 @@
                 </div>
             </div>
         </div>
-
         <div class="categoria">
             <h3>🎁 Diseños Especiales (Pedidos únicos)</h3>
             <div class="products">
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -714,7 +655,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -731,7 +671,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -748,7 +687,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-contenedor">
                     <div class="card" onclick="this.classList.toggle('girada')">
                         <div class="card-frente">
@@ -768,39 +706,32 @@
             </div>
         </div>
     </div>
-
     <footer>
         2026 love therr | Hecho con ❤️
     </footer>
-
     <script>
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
         function agregarAlCarrito(nombre, precio) {
             carrito.push({ nombre, precio, tipo: 'compra' });
             actualizarCarrito();
             guardarCarrito();
         }
-
         function agregarReserva(nombre, precio) {
             carrito.push({ nombre, precio, tipo: 'reserva' });
             actualizarCarrito();
             guardarCarrito();
             alert('✅ Reserva agregada exitosamente. Se mantendrá guardada.');
         }
-
         function actualizarCarrito() {
             const lista = document.getElementById('listaCarrito');
             const contador = document.getElementById('contadorCarrito');
             const total = document.getElementById('totalCarrito');
             lista.innerHTML = '';
             let suma = 0;
-
             carrito.forEach((item, index) => {
                 suma += item.precio;
                 let etiquetaColor = item.tipo === 'compra' ? 'etiqueta-compra' : 'etiqueta-reserva';
                 let etiquetaTexto = item.tipo === 'compra' ? 'Compra' : 'Reserva';
-
                 lista.innerHTML += `
                     <div class="item-carrito">
                         <div>
@@ -813,23 +744,18 @@
                     </div>
                 `;
             });
-
             contador.textContent = carrito.length;
             total.textContent = suma.toFixed(2);
         }
-
         function guardarCarrito() {
             localStorage.setItem('carrito', JSON.stringify(carrito));
         }
-
         function abrirCarrito() {
             document.getElementById('panelCarrito').classList.add('activo');
         }
-
         function cerrarCarrito() {
             document.getElementById('panelCarrito').classList.remove('activo');
         }
-
         document.addEventListener('DOMContentLoaded', actualizarCarrito);
     </script>
 </body>
