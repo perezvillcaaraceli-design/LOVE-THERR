@@ -300,7 +300,6 @@
         transform: translateY(-5px);
     }
 
-    /* IMAGEN ARRIBA - CLICABLE */
     .card img {
         width: 100%;
         height: 150px;
@@ -317,7 +316,6 @@
         font-family: 'Dancing Script', cursive;
     }
 
-    /* DESCRIPCIÓN EN LA PARTE TRASERA */
     .descripcion {
         color: #666;
         font-size: 17px;
@@ -385,14 +383,12 @@
         <span class="marquee-text">
             ✨ LOVE THERR ✨ &nbsp;&nbsp;&nbsp; 
         </span>
-        <!-- Icono Carrito -->
         <div class="icono-carrito" onclick="abrirCarrito()">
             🛒
             <span class="contador-carrito" id="contadorCarrito">0</span>
         </div>
     </header>
 
-    <!-- Panel Carrito -->
     <div class="panel-carrito" id="panelCarrito">
         <div class="cerrar-carrito" onclick="cerrarCarrito()">✕</div>
         <h3>Tu Carrito</h3>
@@ -406,7 +402,7 @@
         <p>Conjuntos únicos seleccionados con todo lo que necesitas</p>
         
         <nav class="menu-portada">
-            <a href="LOVE THERR 2.0.html">Inicio</a>
+            <a href="index.html">Inicio</a>
             <a href="productos.html">Productos</a>
             <a href="combos.html">Combos</a>
             <a href="galerias.html">Galeria</a>
@@ -440,7 +436,6 @@
         <h2 class="titulo-ofertas">Nuestros Combos</h2>
 
         <div class="products">
-            <!-- COMBO 1 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -456,7 +451,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 2 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -471,8 +465,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- COMBO 3 -->
+            
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -488,7 +481,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 4 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -504,7 +496,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 5 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -520,7 +511,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 6 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -536,7 +526,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 7 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -552,7 +541,6 @@
                 </div>
             </div>
 
-            <!-- COMBO 8 -->
             <div class="card-contenedor">
                 <div class="card" onclick="this.classList.toggle('girada')">
                     <div class="card-frente">
@@ -581,7 +569,6 @@
     </footer>
 
     <script>
-        // CARRITO UNIFICADO - SE GUARDA EN TODAS LAS PÁGINAS
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
         function agregarAlCarrito(nombre, precio) {
@@ -630,7 +617,6 @@
             document.getElementById('panelCarrito').classList.remove('activo');
         }
 
-        // Cargar carrito guardado al abrir la página
         document.addEventListener('DOMContentLoaded', actualizarCarrito);
     </script>
 </body>
